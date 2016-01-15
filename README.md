@@ -13,6 +13,7 @@ $ docker pull agoes/nginx-php7fpm
 For easier use, create this bash script
 ```bash
 #!/bin/bash
+# run.sh
 
 DOCKER=$(which docker)
 DATA="/your/volume/data"
@@ -24,7 +25,7 @@ $DOCKER run -d -h nginx-php7fpm --name nginx-php7fpm \
     nginx-php7fpm
 ```
 
-Give executable priv (one time) & execute it
+Enable execution (one time) & execute it
 
 ```bash
 $ chmod +x run.sh && ./run.sh
