@@ -4,13 +4,8 @@ MAINTAINER Aswari Agoes <agoes.aswari@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Set the timezone.
-RUN echo "Asia/Jakarta" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
-
 # install nginx, php7-fpm and other php extensions
-RUN sed -i 's/archive.ubuntu.com/kambing.ui.ac.id/g' /etc/apt/sources.list && \
-    apt-get update -y && \
+RUN apt-get update -y && \
     apt-get install -y software-properties-common supervisor nginx && \
     add-apt-repository ppa:ondrej/php-7.0 && \
     apt-get update -y && \
@@ -24,6 +19,7 @@ RUN phpenmod redis memcached mysql gd imagick curl mcrypt
 # configuration
 RUN sed -i 's/^listen\s*=.*$/listen = \/var\/run\/php\/php7.0-fpm.sock/' /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i 's/\;error_log\s*=\s*syslog\s*$/error_log\s*=\s*\/var\/log\/php7\/error.log/' /etc/php/7.0/fpm/php.ini && \
+    sed -i 's/^\display_errors\s*=\s*Off\s*$/display_errors\ =\ On/' /etc/php/7.0/fpm/php.ini && \
     sed -i 's/access_log\s*\/var\/log\/nginx\/access.log;$/#\ access_log\ \/var\/log\/nginx\/access.log;/' /etc/nginx/nginx.conf
 
 # create php-fpm sock file
