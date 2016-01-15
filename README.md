@@ -2,11 +2,15 @@
 
 **NOT FOR PRODUCTION USE**
 
-Docker image for nginx and PHP7 using php-fpm
+Docker image for nginx and PHP7 using php-fpm. Apt repository url is set to kambing.ui.ac.id and timezone is set to Asia/Jakarta.
 
 ## Docker hub
+Pull from docker hub is not available
+
+## Build
+Clone this repository and from its directory execute
 ```bash
-$ docker pull agoes/nginx-php7fpm
+$ docker build -t nginx-php7fpm .
 ```
 
 ## Usage
